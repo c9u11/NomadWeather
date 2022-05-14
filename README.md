@@ -35,7 +35,7 @@ expo start
 
 ## ReactNative 기초
 
-### Tags
+### Component
 
 #### View
 
