@@ -33,6 +33,32 @@ expo start
 
  프로젝트가 성공적으로 실행되었다면 Localhost의 19001번 또는 19002번 포트를 통해 Expo Dev Tools에 접속 할 수 있다.
 
+## Expo 사용
+
+```bash
+expo start
+```
+
+expo를 시작한 후 command 목록을 확인 할 수 있는데 자주 사용 할 수 있는 목록을 아래에 작성했다.
+
+### r - Reload
+
+기본적으로 저장을 하면 reload가 되는데 제대로 동작하지 않을 시 직접 r command를 사용하여 reload 할 수 있다.
+
+### m - Menu
+
+에뮬레이터 또는 실제 디바이스로 앱을 확인 중이라면 메뉴로 가는 버튼이 없을 것이다.
+
+이때는 m command를 사용하면 메뉴를 열어 확인 할 수 있다.
+
+또한 디바이스를 흔들거나 세 손가락으로 누르고 있으면 메뉴를 여는 옵션도 있어 이를 통해 메뉴를 열면 된다.
+
+#### d - developer tools
+
+내가 developer tools를 닫아 다시 열고 싶을 때는 localhost로 접속하면 되지만 d command를 사용하면 더욱 쉽게 열 수 있다.
+
+
+
 ## ReactNative 기초
 
 ### Component
