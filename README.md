@@ -43,6 +43,8 @@ expo start
 
 또한 react-native에서 **Import 하지 않으면 사용 할 수 없다.**
 
+기본적으로 **Flex Container**이다. 또한 flex-direction의 기본값은 **column**이다.
+
 #### Text
 
 ReactNative에서 모든 텍스트는 Text 태그안에 작성해야한다. 그렇지 않으면 오류를 마주 할 수 있다.
@@ -52,6 +54,8 @@ View와 동일하게 **Import 하지 않으면 사용 할 수 없다.**
 #### StatusBar
 
 StatusBar는 react-native에서 import 하지 않는다. **expo-status-bar에서 import를 해야한다.**
+
+StatusBar는 Component를 사용하지 않아도 기본적으로 나오게 된다.
 
 
 
@@ -92,5 +96,23 @@ const styles = StyleSheet.create({
     fontSize: 28,
   },
 });
+```
+
+### Flex
+
+레이아웃을 만들 때 flex를 사용하여 모든 디바이스 기기에서 비율에 맞도록 만들 수 있다.
+
+```react
+import { View } from "react-native";
+
+export default function App() {
+  return (
+    <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: "tomato" }}></View>
+      <View style={{ flex: 2, backgroundColor: "teal" }}></View>
+      <View style={{ flex: 1, backgroundColor: "orange" }}></View>
+    </View>
+  );
+}
 ```
 
