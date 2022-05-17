@@ -199,3 +199,30 @@ export default function App() {
 const { width, height} = Dimensions.get("window");
 ```
 
+## Location
+
+https://docs.expo.dev/versions/latest/sdk/location/
+
+### 설치
+
+```bash
+expo install expo-location
+```
+
+### 도시명 가져오기
+
+​	* Permission 요청을 해야함 *
+
+```react
+const { granted } = await Location.requestForegroundPermissionsAsync();
+if (!granted) setOk(false);
+const {
+coords: { latitude, longitude },
+} = await Location.getCurrentPositionAsync({ accuracy: 5 });
+const location = await Location.reverseGeocodeAsync(
+{ latitude, longitude },
+{ useGoogleMaps: false }
+);
+setCity(location[0].city);
+```
+
