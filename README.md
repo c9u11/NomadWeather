@@ -57,7 +57,11 @@ expo를 시작한 후 command 목록을 확인 할 수 있는데 자주 사용 �
 
 내가 developer tools를 닫아 다시 열고 싶을 때는 localhost로 접속하면 되지만 d command를 사용하면 더욱 쉽게 열 수 있다.
 
+#### Element Inspector
 
+Command나 Action을 통해서 메뉴를 열면 Show Element Inspector를 확인 할 수 있다.
+
+이는 웹 개발시 개발자 도구의 Element 탭과 유사하다고 보면 된다.
 
 ## ReactNative 기초
 
@@ -65,7 +69,7 @@ expo를 시작한 후 command 목록을 확인 할 수 있는데 자주 사용 �
 
 #### View
 
-기본적으로 ReactNative는 Web이 아니라 APP이기 때문에 div 태그를 사용하지 못한다.
+ReactNative는 Web이 아니라 APP이기 때문에 div 태그를 사용하지 못한다.
 
 또한 react-native에서 **Import 하지 않으면 사용 할 수 없다.**
 
@@ -82,6 +86,49 @@ View와 동일하게 **Import 하지 않으면 사용 할 수 없다.**
 StatusBar는 react-native에서 import 하지 않는다. **expo-status-bar에서 import를 해야한다.**
 
 StatusBar는 Component를 사용하지 않아도 기본적으로 나오게 된다.
+
+#### ScrollView
+
+ReactNative에서 많은 Component를 하나의 View에 작성해보면 스크롤이 되지않는것을 알 수 있다.
+
+때문에 Scroll을 위해서 ScrollView를 사용해주면 Scroll 구현이 가능하다.
+
+```react
+// 기본 : vertical scroll
+<ScrollView></ScrollView>
+// 가로 스크롤
+<ScrollView horizontal></ScrollView>
+```
+
+위 예시와 같이 ScrollView의 horizontal 속성을 사용해보면 Style이 이상하게 적용되는것을 확인 할 수 있다.
+
+이를 고치기 위해서는 **contentContainerStyle**을 알아야한다.
+
+- PagingEnabled
+
+​	부드럽게 넘어가는 스크롤을 Component에 맞춰서 넘어가도록 설정 할 수 있는 속성
+
+```react
+<ScrollView pagingEnabled></ScrollView>
+```
+
+- ShowsHorizontalScrollIndicator
+
+​	스크롤바 제거 속성
+
+```react
+<ScrollView showsHorizontalScrollIndicator={false}></ScrollView>
+```
+
+- IndicatorStyle
+
+​	스크롤바 Style 지정
+
+​	* IOS에서만 적용가능 *
+
+```react
+<ScrollView indicatorStyle="white"></ScrollView>
+```
 
 
 
@@ -140,5 +187,15 @@ export default function App() {
     </View>
   );
 }
+```
+
+### API
+
+#### Dimensions
+
+- ScreenWidth, ScreenHeight
+
+```react
+const { width, height} = Dimensions.get("window");
 ```
 
