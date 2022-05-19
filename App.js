@@ -1,14 +1,14 @@
 import { StatusBar } from "expo-status-bar";
-import { useEffect, useState } from "react";
+import * as Location from "expo-location";
+import React, { useEffect, useState } from "react";
 import {
   View,
-  StyleSheet,
   Text,
-  ScrollView,
   Dimensions,
   ActivityIndicator,
+  StyleSheet,
+  ScrollView,
 } from "react-native";
-import * as Location from "expo-location";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -18,7 +18,7 @@ export default function App() {
   const [city, setCity] = useState("Loading...");
   const [days, setDays] = useState([]);
   const [ok, setOk] = useState(true);
-  const ask = async () => {
+  const getWeather = async () => {
     const { granted } = await Location.requestForegroundPermissionsAsync();
     if (!granted) setOk(false);
     const {
@@ -36,7 +36,7 @@ export default function App() {
     setDays(json.daily || []);
   };
   useEffect(() => {
-    ask();
+    getWeather();
   }, []);
   return (
     <View style={styles.container}>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   cityName: {
-    fontSize: 68,
+    fontSize: 58,
     fontWeight: "500",
   },
   weather: {},
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
   },
   temp: {
     marginTop: 50,
+    fontWeight: "600",
     fontSize: 178,
   },
   description: {
@@ -102,6 +103,6 @@ const styles = StyleSheet.create({
     fontSize: 60,
   },
   tinyText: {
-    fontSize: 20,
+    fontSize: 30,
   },
 });
