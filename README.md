@@ -199,6 +199,26 @@ export default function App() {
 const { width, height} = Dimensions.get("window");
 ```
 
+### Icons
+
+expo에서 제공하는 아이콘을 사용할 수 있다.
+
+https://icons.expo.fyi
+
+#### import
+
+```react
+import { Fontisto } from "@expo/vector-icons";
+```
+
+#### Component
+
+```react
+<Fontisto name="day-sunny" size={68} color="black"/>
+```
+
+
+
 ## Location
 
 https://docs.expo.dev/versions/latest/sdk/location/
