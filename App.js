@@ -1,4 +1,5 @@
 import { StatusBar } from "expo-status-bar";
+import Constants from "expo-constants";
 import * as Location from "expo-location";
 import React, { useEffect, useState } from "react";
 import {
@@ -27,7 +28,7 @@ const icons = {
 
 export default function App() {
   const [city, setCity] = useState("Loading...");
-  const [days, setDays] = useState([]);
+  const [weather, setWeather] = useState([]);
   const [ok, setOk] = useState(true);
   const getWeather = async () => {
     const { granted } = await Location.requestForegroundPermissionsAsync();
@@ -41,51 +42,69 @@ export default function App() {
     );
     setCity(location[0].city);
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=alerts&appid=${API_KEY}&units=metric`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,alerts&appid=${API_KEY}&units=metric&lang=kr`
     );
     const json = await response.json();
-    setDays(json.daily || []);
+    setWeather(json || {});
   };
   useEffect(() => {
     getWeather();
   }, []);
   return (
     <View style={styles.container}>
-      <StatusBar style="black" />
-      <View style={styles.city}>
-        <Text style={styles.cityName}>{city}</Text>
-      </View>
-      <ScrollView
-        horizontal
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.weather}
-      >
-        {days.length === 0 ? (
-          <View style={styles.day}>
-            <ActivityIndicator
-              color="gray"
-              size="large"
-              style={{ marginTop: 10 }}
-            />
-          </View>
-        ) : (
-          days.map((day, index) => (
-            <View key={index} style={styles.day}>
-              <Fontisto
-                name={icons[day.weather[0].main]}
-                size={68}
-                color="black"
-              />
-              <Text style={styles.temp}>
-                {parseFloat(day.temp.day).toFixed(1)}
+      <StatusBar style="light" />
+      {!Object.keys(weather).length ? (
+        <View style={styles.day}>
+          <ActivityIndicator
+            color="gray"
+            size="large"
+            style={{ marginTop: 10 }}
+          />
+        </View>
+      ) : (
+        <View style={styles.container}>
+          <View style={styles.dashboard}>
+            <Text style={styles.cityName}>{city}</Text>
+            <View style={styles.tempContainer}>
+              <Text style={styles.currentTemp}>
+                {parseInt(weather?.current?.temp)}
               </Text>
-              <Text style={styles.description}>{day.weather[0].main}</Text>
-              <Text style={styles.tinyText}>{day.weather[0].description}</Text>
+              <Text style={{ ...styles.currentTemp, ...styles.tempUnit }}>
+                °
+              </Text>
             </View>
-          ))
-        )}
-      </ScrollView>
+            <Text style={styles.description}>
+              {weather.current.weather[0].description}
+            </Text>
+            <Text style={styles.description}>
+              최고:{parseInt(weather.daily[0].temp.max)}° 최저:
+              {parseInt(weather.daily[0].temp.min)}°
+            </Text>
+          </View>
+          <ScrollView
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.weather}
+          >
+            {/* days.map((day, index) => (
+                    <View key={index} style={styles.day}>
+                      <Fontisto
+                        name={icons[day.weather[0].main]}
+                        size={68}
+                        color="black"
+                      />
+                      <Text style={styles.temp}>
+                        {parseFloat(day.temp.day).toFixed(1)}
+                      </Text>
+                      <Text style={styles.description}>{day.weather[0].main}</Text>
+                      <Text style={styles.tinyText}>{day.weather[0].description}</Text>
+                    </View>
+                  ))
+                )} */}
+          </ScrollView>
+        </View>
+      )}
     </View>
   );
 }
@@ -93,30 +112,43 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "lightcyan",
+    backgroundColor: "lightskyblue",
   },
-  city: {
-    flex: 1,
+  dashboard: {
     justifyContent: "center",
     alignItems: "center",
+    height: "40%",
+    paddingTop: Platform.OS === "ios" ? Constants.statusBarHeight : 0,
   },
   cityName: {
-    fontSize: 58,
+    fontSize: 40,
+    fontWeight: "300",
+    color: "white",
+  },
+  tempContainer: {
+    paddingHorizontal: 35,
+  },
+  currentTemp: {
+    fontWeight: "200",
+    fontSize: 100,
+    color: "white",
+  },
+  tempUnit: {
+    fontSize: 100,
+    position: "absolute",
+    top: 0,
+    right: 0,
+  },
+  description: {
+    fontSize: 20,
+    color: "white",
     fontWeight: "500",
+    marginVertical: 3,
   },
   weather: {},
   day: {
     width: SCREEN_WIDTH,
     alignItems: "center",
-  },
-  temp: {
-    marginTop: 50,
-    fontWeight: "600",
-    fontSize: 178,
-  },
-  description: {
-    marginTop: -30,
-    fontSize: 60,
   },
   tinyText: {
     fontSize: 30,
