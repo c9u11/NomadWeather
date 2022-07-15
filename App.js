@@ -10,7 +10,7 @@ import {
   StyleSheet,
   ScrollView,
 } from "react-native";
-import { Fontisto } from "@expo/vector-icons";
+import Hourly from "./components/Hourly";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -81,13 +81,8 @@ export default function App() {
               {parseInt(weather.daily[0].temp.min)}°
             </Text>
           </View>
-          <ScrollView
-            horizontal
-            pagingEnabled
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.weather}
-          >
-            {/* days.map((day, index) => (
+          <Hourly data={weather.hourly}></Hourly>
+          {/* days.map((day, index) => (
                     <View key={index} style={styles.day}>
                       <Fontisto
                         name={icons[day.weather[0].main]}
@@ -102,7 +97,6 @@ export default function App() {
                     </View>
                   ))
                 )} */}
-          </ScrollView>
         </View>
       )}
     </View>
@@ -112,6 +106,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center",
     backgroundColor: "lightskyblue",
   },
   dashboard: {
