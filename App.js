@@ -8,7 +8,6 @@ import {
   Dimensions,
   ActivityIndicator,
   StyleSheet,
-  ScrollView,
 } from "react-native";
 import Hourly from "./components/Hourly";
 
@@ -16,18 +15,8 @@ const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 const API_KEY = "2231422ed43d5e60f7e3ea2a0e7e997a";
 
-const icons = {
-  Clouds: "cloudy",
-  Clear: "day-sunny",
-  Atomsphere: "cloudy-gusts",
-  Snow: "snow",
-  Rain: "rains",
-  Drizzle: "rain",
-  Thunderstorm: "lightning",
-};
-
 export default function App() {
-  const [city, setCity] = useState("Loading...");
+  const [city, setCity] = useState("위치 정보 알 수 없음");
   const [weather, setWeather] = useState([]);
   const [ok, setOk] = useState(true);
   const getWeather = async () => {
@@ -51,55 +40,44 @@ export default function App() {
     getWeather();
   }, []);
   return (
-    <View style={styles.container}>
+    <>
       <StatusBar style="light" />
-      {!Object.keys(weather).length ? (
-        <View style={styles.day}>
-          <ActivityIndicator
-            color="gray"
-            size="large"
-            style={{ marginTop: 10 }}
-          />
-        </View>
-      ) : (
-        <View style={styles.container}>
+      <View style={styles.container}>
+        {!Object.keys(weather).length ? (
           <View style={styles.dashboard}>
             <Text style={styles.cityName}>{city}</Text>
             <View style={styles.tempContainer}>
-              <Text style={styles.currentTemp}>
-                {parseInt(weather?.current?.temp)}
-              </Text>
+              <Text style={styles.currentTemp}>--</Text>
               <Text style={{ ...styles.currentTemp, ...styles.tempUnit }}>
                 °
               </Text>
             </View>
-            <Text style={styles.description}>
-              {weather.current.weather[0].description}
-            </Text>
-            <Text style={styles.description}>
-              최고:{parseInt(weather.daily[0].temp.max)}° 최저:
-              {parseInt(weather.daily[0].temp.min)}°
-            </Text>
           </View>
-          <Hourly data={weather.hourly}></Hourly>
-          {/* days.map((day, index) => (
-                    <View key={index} style={styles.day}>
-                      <Fontisto
-                        name={icons[day.weather[0].main]}
-                        size={68}
-                        color="black"
-                      />
-                      <Text style={styles.temp}>
-                        {parseFloat(day.temp.day).toFixed(1)}
-                      </Text>
-                      <Text style={styles.description}>{day.weather[0].main}</Text>
-                      <Text style={styles.tinyText}>{day.weather[0].description}</Text>
-                    </View>
-                  ))
-                )} */}
-        </View>
-      )}
-    </View>
+        ) : (
+          <>
+            <View style={styles.dashboard}>
+              <Text style={styles.cityName}>{city}</Text>
+              <View style={styles.tempContainer}>
+                <Text style={styles.currentTemp}>
+                  {parseInt(weather.current.temp)}
+                </Text>
+                <Text style={{ ...styles.currentTemp, ...styles.tempUnit }}>
+                  °
+                </Text>
+              </View>
+              <Text style={styles.description}>
+                {weather.current.weather[0].description}
+              </Text>
+              <Text style={styles.description}>
+                최고:{parseInt(weather.daily[0].temp.max)}° 최저:
+                {parseInt(weather.daily[0].temp.min)}°
+              </Text>
+            </View>
+            <Hourly data={weather.hourly}></Hourly>
+          </>
+        )}
+      </View>
+    </>
   );
 }
 
@@ -107,7 +85,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "lightskyblue",
+    backgroundColor: "skyblue",
   },
   dashboard: {
     justifyContent: "center",
@@ -140,12 +118,8 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     marginVertical: 3,
   },
-  weather: {},
   day: {
     width: SCREEN_WIDTH,
     alignItems: "center",
-  },
-  tinyText: {
-    fontSize: 30,
   },
 });
