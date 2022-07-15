@@ -2,10 +2,10 @@ import { View, ScrollView, Text, StyleSheet, Image } from "react-native";
 import Box from "./Box";
 
 export default function Hourly({ data }) {
+  if (!data.length) return <></>;
   let description = data[0].weather[0].description;
   let title;
   for (let i = 0; i < 24; i++) {
-    console.log(data[i].weather[0].description);
     if (!i) continue;
     if (description !== data[i].weather[0].description) {
       const hour = new Date(data[i].dt * 1000).getHours();
@@ -14,14 +14,14 @@ export default function Hourly({ data }) {
       break;
     }
   }
-  if (!title) title = `${description} 상태가 지속됩니다.`;
+  if (!title) title = `남은 하루 동안 ${description} 상태가 이어지겠습니다.`;
   return (
     <Box title={title}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {data.map((weather, idx) => {
           if (idx > 24) return null;
           return (
-            <View style={styles.day}>
+            <View style={styles.day} key={weather.dt}>
               <Text style={styles.time}>
                 {!idx ? "지금" : `${new Date(weather.dt * 1000).getHours()}시`}
               </Text>
