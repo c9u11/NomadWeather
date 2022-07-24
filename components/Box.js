@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     overflow: "hidden",
     backgroundColor: "transparent",
+    marginBottom: 10,
   },
   blur: {
     padding: 15,
