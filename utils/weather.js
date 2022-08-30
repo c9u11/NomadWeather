@@ -1,4 +1,4 @@
-export default function getDayTitle(hourlyData) {
+export function getDayTitle(hourlyData) {
   let description = hourlyData[0].weather[0].description;
   let title;
   for (let i = 0; i < 24; i++) {

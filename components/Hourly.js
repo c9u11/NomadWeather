@@ -1,5 +1,5 @@
 import { View, ScrollView, Text, StyleSheet, Image } from "react-native";
-import getDayTitle from "../utils/weather";
+import { getDayTitle } from "../utils/weather";
 import Box from "./Box";
 
 export default function Hourly({ data }) {
