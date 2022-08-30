@@ -1,22 +1,11 @@
 import { View, ScrollView, Text, StyleSheet, Image } from "react-native";
+import getDayTitle from "../utils/weather";
 import Box from "./Box";
 
 export default function Hourly({ data }) {
   if (!data.length) return <></>;
-  let description = data[0].weather[0].description;
-  let title;
-  for (let i = 0; i < 24; i++) {
-    if (!i) continue;
-    if (description !== data[i].weather[0].description) {
-      const hour = new Date(data[i].dt * 1000).getHours();
-      const description = data[i].weather[0].description;
-      title = `⏰ ${hour}:00쯤 ${description} 상태가 예상됩니다.`;
-      break;
-    }
-  }
-  if (!title) title = `⏰ 남은 하루 동안 ${description} 상태가 이어지겠습니다.`;
   return (
-    <Box title={title}>
+    <Box title={getDayTitle(data)}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {data.map((weather, idx) => {
           if (idx > 24) return null;
