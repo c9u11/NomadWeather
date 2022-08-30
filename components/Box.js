@@ -28,11 +28,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#00000038",
   },
   title: {
-    borderBottomWidth: 0.5,
-    borderBottomColor: "#ffffff55",
-    borderStyle: "solid",
     paddingBottom: 10,
-    marginBottom: 10,
     justifyContent: "center",
   },
   whiteText: {
