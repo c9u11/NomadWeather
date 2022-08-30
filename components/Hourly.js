@@ -10,18 +10,18 @@ export default function Hourly({ data }) {
     if (description !== data[i].weather[0].description) {
       const hour = new Date(data[i].dt * 1000).getHours();
       const description = data[i].weather[0].description;
-      title = `${hour}:00쯤 ${description} 상태가 예상됩니다.`;
+      title = `⏰ ${hour}:00쯤 ${description} 상태가 예상됩니다.`;
       break;
     }
   }
-  if (!title) title = `남은 하루 동안 ${description} 상태가 이어지겠습니다.`;
+  if (!title) title = `⏰ 남은 하루 동안 ${description} 상태가 이어지겠습니다.`;
   return (
     <Box title={title}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {data.map((weather, idx) => {
           if (idx > 24) return null;
           return (
-            <View style={styles.day} key={weather.dt}>
+            <View style={styles.hour} key={weather.dt}>
               <Text style={styles.time}>
                 {!idx ? "지금" : `${new Date(weather.dt * 1000).getHours()}시`}
               </Text>
@@ -41,11 +41,14 @@ export default function Hourly({ data }) {
 }
 
 const styles = StyleSheet.create({
-  day: {
+  hour: {
     width: 50,
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 5,
+    borderTopWidth: 0.5,
+    borderTopColor: "#ffffff55",
+    borderStyle: "solid",
+    paddingTop: 10,
   },
   time: {
     color: "white",
