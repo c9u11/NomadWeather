@@ -13,3 +13,16 @@ export function getDayTitle(hourlyData) {
   if (!title) title = `⏰ 남은 하루 동안 ${description} 상태가 이어지겠습니다.`;
   return title;
 }
+
+export function getWeekTempRange(dailyData) {
+  let min = Infinity;
+  let max = -Infinity;
+  for (let day of dailyData) {
+    min = Math.min(min, Math.floor(day.temp.min));
+    max = Math.max(max, Math.floor(day.temp.max));
+  }
+  return {
+    min,
+    max,
+  };
+}
