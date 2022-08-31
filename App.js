@@ -1,15 +1,10 @@
 import { StatusBar } from "expo-status-bar";
-import Constants from "expo-constants";
 import * as Location from "expo-location";
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  Dimensions,
-  ActivityIndicator,
-  StyleSheet,
-} from "react-native";
+import { View, Dimensions, StyleSheet } from "react-native";
 import Hourly from "./components/Hourly";
+import Daily from "./components/Daily";
+import DashBoard from "./components/DashBoard";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -43,37 +38,11 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <View style={styles.container}>
-        {!Object.keys(weather).length ? (
-          <View style={styles.dashboard}>
-            <Text style={styles.cityName}>{city}</Text>
-            <View style={styles.tempContainer}>
-              <Text style={styles.currentTemp}>--</Text>
-              <Text style={{ ...styles.currentTemp, ...styles.tempUnit }}>
-                °
-              </Text>
-            </View>
-          </View>
-        ) : (
+        <DashBoard data={weather} city={city}></DashBoard>
+        {!Object.keys(weather).length ? null : (
           <>
-            <View style={styles.dashboard}>
-              <Text style={styles.cityName}>{city}</Text>
-              <View style={styles.tempContainer}>
-                <Text style={styles.currentTemp}>
-                  {parseInt(weather.current.temp)}
-                </Text>
-                <Text style={{ ...styles.currentTemp, ...styles.tempUnit }}>
-                  °
-                </Text>
-              </View>
-              <Text style={styles.description}>
-                {weather.current.weather[0].description}
-              </Text>
-              <Text style={styles.description}>
-                최고:{parseInt(weather.daily[0].temp.max)}° 최저:
-                {parseInt(weather.daily[0].temp.min)}°
-              </Text>
-            </View>
             <Hourly data={weather.hourly}></Hourly>
+            <Daily data={weather.daily}></Daily>
           </>
         )}
       </View>
@@ -86,37 +55,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     backgroundColor: "skyblue",
-  },
-  dashboard: {
-    justifyContent: "center",
-    alignItems: "center",
-    height: "40%",
-    paddingTop: Platform.OS === "ios" ? Constants.statusBarHeight : 0,
-  },
-  cityName: {
-    fontSize: 40,
-    fontWeight: "300",
-    color: "white",
-  },
-  tempContainer: {
-    paddingHorizontal: 35,
-  },
-  currentTemp: {
-    fontWeight: "200",
-    fontSize: 100,
-    color: "white",
-  },
-  tempUnit: {
-    fontSize: 100,
-    position: "absolute",
-    top: 0,
-    right: 0,
-  },
-  description: {
-    fontSize: 20,
-    color: "white",
-    fontWeight: "500",
-    marginVertical: 3,
   },
   day: {
     width: SCREEN_WIDTH,
