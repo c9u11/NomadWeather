@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import * as Location from "expo-location";
 import React, { useEffect, useState } from "react";
-import { View, Dimensions, StyleSheet } from "react-native";
+import { View, Dimensions, StyleSheet, ScrollView } from "react-native";
 import Hourly from "./components/Hourly";
 import Daily from "./components/Daily";
 import DashBoard from "./components/DashBoard";
@@ -40,10 +40,10 @@ export default function App() {
       <View style={styles.container}>
         <DashBoard data={weather} city={city}></DashBoard>
         {!Object.keys(weather).length ? null : (
-          <>
+          <ScrollView showsVerticalScrollIndicator={false}>
             <Hourly data={weather.hourly}></Hourly>
             <Daily data={weather.daily}></Daily>
-          </>
+          </ScrollView>
         )}
       </View>
     </>
