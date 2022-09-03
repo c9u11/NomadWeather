@@ -5,7 +5,7 @@ const { width: SCREEN_WIDTH } = Dimensions.get("window");
 export default function Box({ title, children }) {
   return (
     <View style={styles.container}>
-      <BlurView intensity={80} style={styles.blur}>
+      <BlurView intensity={30} style={styles.blur}>
         <View style={styles.title}>
           <Text style={styles.whiteText}>{title}</Text>
         </View>
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   blur: {
     padding: 15,
-    backgroundColor: "#00000038",
+    backgroundColor: "#55555533",
   },
   title: {
     paddingBottom: 10,
