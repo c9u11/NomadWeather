@@ -44,7 +44,24 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <ImageBackground
-        source={require("./assets/clear.jpeg")}
+        source={(function () {
+          switch (weather.current.weather[0].main) {
+            case "Clear":
+              return require("./assets/weather/Clear.jpeg");
+            case "Clouds":
+              return require("./assets/weather/Clouds.jpeg");
+            case "Drizzle":
+              return require("./assets/weather/Drizzle.jpeg");
+            case "Rain":
+              return require("./assets/weather/Rain.jpeg");
+            case "Snow":
+              return require("./assets/weather/Snow.jpeg");
+            case "Thunderstorm":
+              return require("./assets/weather/Thunderstorm.jpeg");
+            default:
+              return require("./assets/weather/Loading.jpeg");
+          }
+        })()}
         resizeMode="cover"
         style={styles.backgroundImage}
       >
