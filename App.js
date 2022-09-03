@@ -1,7 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import * as Location from "expo-location";
 import React, { useEffect, useState } from "react";
-import { View, Dimensions, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Dimensions,
+  StyleSheet,
+  ScrollView,
+  ImageBackground,
+} from "react-native";
 import Hourly from "./components/Hourly";
 import Daily from "./components/Daily";
 import DashBoard from "./components/DashBoard";
@@ -37,7 +43,11 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <View style={styles.container}>
+      <ImageBackground
+        source={require("./assets/clear.jpeg")}
+        resizeMode="cover"
+        style={styles.backgroundImage}
+      >
         <DashBoard data={weather} city={city}></DashBoard>
         {!Object.keys(weather).length ? null : (
           <ScrollView showsVerticalScrollIndicator={false}>
@@ -45,7 +55,7 @@ export default function App() {
             <Daily data={weather.daily}></Daily>
           </ScrollView>
         )}
-      </View>
+      </ImageBackground>
     </>
   );
 }
@@ -54,10 +64,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "skyblue",
+    // backgroundColor: "skyblue",
   },
   day: {
     width: SCREEN_WIDTH,
+    alignItems: "center",
+  },
+  backgroundImage: {
+    flex: 1,
     alignItems: "center",
   },
 });
