@@ -28,7 +28,6 @@ export function getWeekTempRange(dailyData) {
 }
 
 export function getCenterRange(min, max, start, end) {
-  console.log(start, end, min, max);
   return {
     start: (+start - +min) / (+max - +min),
     end: (+end - +min) / (+max - +min),
