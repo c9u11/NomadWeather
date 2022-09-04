@@ -45,7 +45,7 @@ export default function App() {
       <StatusBar style="light" />
       <ImageBackground
         source={(function () {
-          switch (weather.current.weather[0].main) {
+          switch (weather?.current?.weather[0]?.main) {
             case "Clear":
               return require("./assets/weather/Clear.jpeg");
             case "Clouds":
