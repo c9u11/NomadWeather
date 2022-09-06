@@ -1,8 +1,10 @@
 # NomadWeather
 
-![IMG_4014](https://user-images.githubusercontent.com/29428714/188664000-b1006678-4c0c-4005-8667-0e300763241e.PNG)
+<center class="half">
+  <img src="https://user-images.githubusercontent.com/29428714/188664000-b1006678-4c0c-4005-8667-0e300763241e.PNG" width="50%"/>
+  <img src="https://user-images.githubusercontent.com/29428714/188664117-4ec2fc9c-03c0-4ee6-bc78-831531795db1.PNG" width="50%"/>
+</center>
 
-![IMG_4024](https://user-images.githubusercontent.com/29428714/188664117-4ec2fc9c-03c0-4ee6-bc78-831531795db1.PNG)
 
 ## 개요
 
