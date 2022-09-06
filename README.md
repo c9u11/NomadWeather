@@ -1,8 +1,20 @@
 # NomadWeather
 
+![IMG_4014](https://user-images.githubusercontent.com/29428714/188664000-b1006678-4c0c-4005-8667-0e300763241e.PNG)
+
+![IMG_4024](https://user-images.githubusercontent.com/29428714/188664117-4ec2fc9c-03c0-4ee6-bc78-831531795db1.PNG)
+
 ## 개요
 
 이 프로젝트는 React Native를 처음 사용해보는 프로젝트입니다.
+
+## 기능
+
+- 현재 위치 가져오기
+- 해당 위치의 날씨 정보 가져오기
+  - Day Weather Summary
+  - Hourly Weather
+  - Daily Weather
 
 ## 설치
 
