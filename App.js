@@ -22,7 +22,10 @@ export default function App() {
   const [ok, setOk] = useState(true);
   const getWeather = async () => {
     const { granted } = await Location.requestForegroundPermissionsAsync();
-    if (!granted) setOk(false);
+    if (!granted) {
+      setOk(false);
+      return;
+    }
     const {
       coords: { latitude, longitude },
     } = await Location.getCurrentPositionAsync({ accuracy: 5 });
