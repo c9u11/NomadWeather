@@ -1,7 +1,7 @@
 # NomadWeather
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/29428714/188664000-b1006678-4c0c-4005-8667-0e300763241e.PNG" width="49%"/>
+  <img src="https://raw.githubusercontent.com/c9u11/NomadWeather/master/assets/screenshot.jpg" width="49%"/>
   <img src="https://user-images.githubusercontent.com/29428714/188664117-4ec2fc9c-03c0-4ee6-bc78-831531795db1.PNG" width="49%"/>
 </p>
 
@@ -44,7 +44,7 @@ expo init {ProjectName}
 expo start
 ```
 
- 프로젝트가 성공적으로 실행되었다면 Localhost의 19001번 또는 19002번 포트를 통해 Expo Dev Tools에 접속 할 수 있다.
+프로젝트가 성공적으로 실행되었다면 Localhost의 19001번 또는 19002번 포트를 통해 Expo Dev Tools에 접속 할 수 있다.
 
 ## Expo 사용
 
@@ -119,7 +119,7 @@ ReactNative에서 많은 Component를 하나의 View에 작성해보면 스크�
 
 - PagingEnabled
 
-​	부드럽게 넘어가는 스크롤을 Component에 맞춰서 넘어가도록 설정 할 수 있는 속성
+​ 부드럽게 넘어가는 스크롤을 Component에 맞춰서 넘어가도록 설정 할 수 있는 속성
 
 ```react
 <ScrollView pagingEnabled></ScrollView>
@@ -127,7 +127,7 @@ ReactNative에서 많은 Component를 하나의 View에 작성해보면 스크�
 
 - ShowsHorizontalScrollIndicator
 
-​	스크롤바 제거 속성
+​ 스크롤바 제거 속성
 
 ```react
 <ScrollView showsHorizontalScrollIndicator={false}></ScrollView>
@@ -135,15 +135,13 @@ ReactNative에서 많은 Component를 하나의 View에 작성해보면 스크�
 
 - IndicatorStyle
 
-​	스크롤바 Style 지정
+​ 스크롤바 Style 지정
 
-​	* IOS에서만 적용가능 *
+​ _ IOS에서만 적용가능 _
 
 ```react
 <ScrollView indicatorStyle="white"></ScrollView>
 ```
-
-
 
 ### Styles
 
@@ -230,8 +228,6 @@ import { Fontisto } from "@expo/vector-icons";
 <Fontisto name="day-sunny" size={68} color="black"/>
 ```
 
-
-
 ## Location
 
 https://docs.expo.dev/versions/latest/sdk/location/
@@ -244,7 +240,7 @@ expo install expo-location
 
 ### 도시명 가져오기
 
-​	* Permission 요청을 해야함 *
+​ _ Permission 요청을 해야함 _
 
 ```react
 const { granted } = await Location.requestForegroundPermissionsAsync();
@@ -258,4 +254,3 @@ const location = await Location.reverseGeocodeAsync(
 );
 setCity(location[0].city);
 ```
-
